@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estructura de Datos — Unidades del Sílabus</title>
+  <style>
+    :root{
+      --bg:#0f172a;           /* slate-900 */
+      --card:#111827;         /* gray-900 */
+      --muted:#94a3b8;        /* slate-400 */
+      --text:#e5e7eb;         /* gray-200 */
+      --accent:#38bdf8;       /* sky-400 */
+      --accent-2:#22c55e;     /* green-500 */
+      --ring:#334155;         /* slate-700 */
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial;
+      color:var(--text); background:linear-gradient(180deg,#0b1222, var(--bg));
+    }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(15,23,42,.75);
+      border-bottom:1px solid var(--ring);
+    }
+    .wrap{max-width:1200px; margin:auto; padding:0 1rem}
+    .bar{display:flex; align-items:center; gap:.75rem; padding:1rem 0}
+    .logo{
+      display:inline-flex; align-items:center; gap:.6rem; font-weight:700; letter-spacing:.3px;
+    }
+    .logo b{color:var(--accent)}
+    nav{
+      margin-left:auto; display:flex; gap:.25rem; flex-wrap:wrap;
+    }
+    nav a{
+      text-decoration:none; color:var(--text); font-weight:600; font-size:.95rem;
+      padding:.6rem .8rem; border-radius:.8rem; border:1px solid transparent;
+    }
+    nav a:hover{border-color:var(--ring); background:#0b1222}
+    nav a.active{border-color:var(--accent); color:var(--accent)}
+
+    /* Layout */
+    main{max-width:1200px; margin:1.25rem auto 4rem; padding:0 1rem; display:grid; gap:1rem; grid-template-columns: 1fr}
+    .grid{display:grid; gap:1rem}
+    @media (min-width: 900px){
+      main{grid-template-columns: 320px 1fr}
+    }
+
+    /* Side menu (within page) */
+    .side{
+      position:sticky; top:76px; align-self:start;
+      border:1px solid var(--ring); border-radius:1rem; background:var(--card);
+      padding:1rem;
+    }
+    .side h3{margin:.25rem 0 1rem; font-size:1rem; color:var(--muted); font-weight:700; letter-spacing:.4px}
+    .side a{display:block; padding:.65rem .75rem; color:var(--text); text-decoration:none; border-radius:.6rem; border:1px solid transparent}
+    .side a:hover{background:#0b1222; border-color:var(--ring)}
+    .side a.sel{border-color:var(--accent); color:var(--accent)}
+
+    /* Cards / sections */
+    section{
+      border:1px solid var(--ring); border-radius:1rem; background:var(--card); padding:1.25rem;
+      box-shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    section h2{
+      margin:.25rem 0 1rem; font-size:1.35rem; line-height:1.2;
+      display:flex; align-items:center; gap:.6rem;
+    }
+    .chip{
+      display:inline-block; font-size:.75rem; font-weight:700; color:#0b1222;
+      background:linear-gradient(90deg,var(--accent), var(--accent-2));
+      padding:.25rem .6rem; border-radius:999px;
+    }
+    .meta{color:var(--muted); font-size:.95rem; margin:.25rem 0 1rem}
+    .topics{display:grid; gap:.75rem}
+    .topics h3{margin:.5rem 0 .25rem; font-size:1.05rem; color:var(--accent)}
+    .topics ul{margin:.25rem 0 0 1.25rem; padding:0}
+    .topics li{margin:.25rem 0}
+    .foot{
+      margin-top:1rem; display:flex; gap:.5rem; flex-wrap:wrap
+    }
+    .foot .tag{
+      font-size:.76rem; color:var(--muted); border:1px solid var(--ring); border-radius:999px; padding:.2rem .55rem
+    }
+
+    /* Back to top */
+    .top{
+      position:fixed; right:16px; bottom:16px; z-index:20; display:none;
+      border-radius:999px; border:1px solid var(--accent); background:#051225; color:var(--accent);
+      padding:.7rem .9rem; text-decoration:none; font-weight:700
+    }
+    .top.show{display:inline-block}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap bar">
+      <div class="logo" aria-label="Curso Estructura de Datos">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>Estructura de Datos</span> <b>• Unidades</b>
+      </div>
+      <nav aria-label="Navegación principal">
+        <a href="#u1" class="active">Unidad 1</a>
+        <a href="#u2">Unidad 2</a>
+        <a href="#u3">Unidad 3</a>
+        <a href="#u4">Unidad 4</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Side in-page menu -->
+    <aside class="side" aria-label="Índice de temas">
+      <h3>Contenido</h3>
+      <a href="#u1" class="sel">Fundamentos e Introducción</a>
+      <a href="#u2">Estructuras Lineales</a>
+      <a href="#u3">Estructuras No Lineales</a>
+      <a href="#u4">Búsqueda y Ordenamiento</a>
+    </aside>
+
+    <!-- Content -->
+    <div class="grid">
+      <!-- Unidad 1 -->
+      <section id="u1" aria-labelledby="t1">
+        <h2 id="t1"><span class="chip">Unidad 1</span> Fundamentos e Introducción a las Estructuras de Datos</h2>
+        <p class="meta">Resultado: identificar características y fundamentos para su aplicación en contextos educativos y profesionales.</p>
+
+        <div class="topics">
+          <div>
+            <h3>1. Introducción</h3>
+            <ul>
+              <li>Historia</li>
+              <li>Características</li>
+              <li>Ventajas y desventajas</li>
+            </ul>
+          </div>
+          <div>
+            <h3>2. Tipos de datos</h3>
+            <ul>
+              <li>Primitivos</li>
+              <li>Compuestos</li>
+              <li>Agregados / Estructuras de datos</li>
+              <li>Abstractos</li>
+            </ul>
+          </div>
+          <div>
+            <h3>3. Datos compuestos</h3>
+            <ul>
+              <li>Vectores</li>
+              <li>Matrices</li>
+              <li>Registros</li>
+            </ul>
+          </div>
+          <div>
+            <h3>4. Fundamentos de algoritmia</h3>
+            <ul>
+              <li>Concepto de algoritmo</li>
+              <li>Formas de representación</li>
+              <li>Introducción a ciencias de la computación</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="foot">
+          <span class="tag">Aprendizaje basado en problemas</span>
+          <span class="tag">Evaluación continua</span>
+          <span class="tag">Herramientas digitales</span>
+        </div>
+      </section>
+
+      <!-- Unidad 2 -->
+      <section id="u2" aria-labelledby="t2">
+        <h2 id="t2"><span class="chip">Unidad 2</span> Estructuras de Datos Lineales</h2>
+        <p class="meta">Resultado: analizar y aplicar pilas, colas y listas para resolver problemas computacionales.</p>
+
+        <div class="topics">
+          <div>
+            <h3>1. Pila (Stack)</h3>
+            <ul>
+              <li>¿Qué es una pila?</li>
+              <li>Representación gráfica</li>
+              <li>Operaciones (push, pop, top)</li>
+              <li>Aplicaciones</li>
+            </ul>
+          </div>
+          <div>
+            <h3>2. Cola (Queue)</h3>
+            <ul>
+              <li>¿Qué es una cola?</li>
+              <li>Tipos y representación</li>
+              <li>Operaciones (enqueue, dequeue, front)</li>
+              <li>Aplicaciones</li>
+            </ul>
+          </div>
+          <div>
+            <h3>3. Lista (List)</h3>
+            <ul>
+              <li>Concepto de nodo</li>
+              <li>¿Qué es una lista?</li>
+              <li>Tipos y representación</li>
+              <li>Operaciones</li>
+              <li>Aplicaciones</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="foot">
+          <span class="tag">Taller</span>
+          <span class="tag">Foro</span>
+          <span class="tag">Mapas y diagramas</span>
+        </div>
+      </section>
+
+      <!-- Unidad 3 -->
+      <section id="u3" aria-labelledby="t3">
+        <h2 id="t3"><span class="chip">Unidad 3</span> Estructuras de Datos No Lineales</h2>
+        <p class="meta">Resultado: aplicar árboles y grafos con apoyo de técnicas de visualización.</p>
+
+        <div class="topics">
+          <div>
+            <h3>1. Visualización de algoritmos</h3>
+            <ul>
+              <li>Técnicas y herramientas</li>
+            </ul>
+          </div>
+          <div>
+            <h3>2. Árboles</h3>
+            <ul>
+              <li>Definición</li>
+              <li>Representación</li>
+              <li>Recorridos</li>
+              <li>Métodos</li>
+            </ul>
+          </div>
+          <div>
+            <h3>3. Grafos</h3>
+            <ul>
+              <li>Definición</li>
+              <li>Tipos</li>
+              <li>Propiedades</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="foot">
+          <span class="tag">Simulaciones</span>
+          <span class="tag">Trabajo en equipo</span>
+          <span class="tag">Laboratorio</span>
+        </div>
+      </section>
+
+      <!-- Unidad 4 -->
+      <section id="u4" aria-labelledby="t4">
+        <h2 id="t4"><span class="chip">Unidad 4</span> Búsqueda y Ordenamiento</h2>
+        <p class="meta">Resultado: conocer y aplicar métodos de análisis, búsqueda y ordenamiento.</p>
+
+        <div class="topics">
+          <div>
+            <h3>1. Análisis de algoritmos</h3>
+            <ul>
+              <li>Complejidad temporal y espacial (Big-O)</li>
+              <li>Algoritmos clásicos</li>
+              <li>Aplicaciones en programación competitiva</li>
+            </ul>
+          </div>
+          <div>
+            <h3>2. Ordenamiento</h3>
+            <ul>
+              <li>Burbuja (Bubble sort)</li>
+              <li>Quicksort</li>
+              <li>Mergesort</li>
+            </ul>
+          </div>
+          <div>
+            <h3>3. Búsqueda</h3>
+            <ul>
+              <li>Secuencial</li>
+              <li>Binaria</li>
+              <li>Hash</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="foot">
+          <span class="tag">Cuestionarios</span>
+          <span class="tag">Debate</span>
+          <span class="tag">Clase magistral</span>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <a href="#top" class="top" id="toTop" aria-label="Volver arriba">↑</a>
+
+  <script>
+    // Utilidades: resaltar el enlace activo en header y aside según el scroll
+    const linksHeader = [...document.querySelectorAll('header nav a')];
+    const linksSide   = [...document.querySelectorAll('.side a')];
+    const sections    = [...document.querySelectorAll('main section')];
+    const toTop       = document.getElementById('toTop');
+
+    const activate = (id) => {
+      for (const a of linksHeader){ a.classList.toggle('active', a.getAttribute('href') === '#'+id); }
+      for (const a of linksSide){ a.classList.toggle('sel', a.getAttribute('href') === '#'+id); }
+    };
+
+    // IntersectionObserver para detectar sección visible
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){
+          activate(e.target.id);
+        }
+      });
+    }, {rootMargin: "-20% 0px -60% 0px", threshold: 0.2});
+    sections.forEach(s=>io.observe(s));
+
+    // Mostrar botón volver arriba
+    window.addEventListener('scroll', ()=>{
+      if (window.scrollY > 600) toTop.classList.add('show');
+      else toTop.classList.remove('show');
+    });
+
+    // Mejorar el enfoque tras clic
+    const allMenu = [...linksHeader, ...linksSide];
+    allMenu.forEach(a=>{
+      a.addEventListener('click', ()=>{
+        const id = a.getAttribute('href').slice(1);
+        activate(id);
+      });
+    });
+  </script>
+</body>
+</html>
